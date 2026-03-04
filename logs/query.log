@@ -1,0 +1,1512 @@
+2026-03-03 09:40:10.0282 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for anthropic/claude-sonnet-4-20250514: {
+  "attempted_request_count": 27,
+  "successful_response_count": 27,
+  "failed_response_count": 0,
+  "failure_rate": 0.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_seconds": 168.97144484519958,
+  "compute_duration_per_response_seconds": 6.498901724815369,
+  "cache_hit_rate": 0.0,
+  "streaming_responses": 1,
+  "responses_with_tokens": 26,
+  "prompt_tokens": 58628,
+  "completion_tokens": 5371,
+  "total_tokens": 63999,
+  "tokens_per_response": 2461.5,
+  "cost_per_response": 0.0
+}
+2026-03-03 09:40:54.0079 - WARNING - graphrag.query.context_builder.community_context - Warning: No community records added when building community context.
+2026-03-03 09:41:04.0900 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for openai/text-embedding-3-small: {
+  "attempted_request_count": 1,
+  "successful_response_count": 1,
+  "failed_response_count": 0,
+  "failure_rate": 0.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_seconds": 0.7681307792663574,
+  "compute_duration_per_response_seconds": 0.7681307792663574,
+  "cache_hit_rate": 0.0,
+  "streaming_responses": 0,
+  "responses_with_tokens": 1,
+  "prompt_tokens": 8,
+  "total_tokens": 8,
+  "tokens_per_response": 8.0,
+  "cost_per_response": 0.0
+}
+2026-03-03 09:41:04.0901 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for anthropic/claude-sonnet-4-20250514: {
+  "attempted_request_count": 1,
+  "successful_response_count": 1,
+  "failed_response_count": 0,
+  "failure_rate": 0.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_seconds": 0,
+  "compute_duration_per_response_seconds": 0.0,
+  "cache_hit_rate": 0.0,
+  "streaming_responses": 1,
+  "tokens_per_response": 0.0,
+  "cost_per_response": 0.0
+}
+2026-03-03 11:08:22.0467 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkCfz3B2fJ75BhGVa"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkCfz3B2fJ75BhGVa"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkCfz3B2fJ75BhGVa"}
+2026-03-03 11:08:22.0475 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkDfMpAGfe5jdek5P"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkDfMpAGfe5jdek5P"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkDfMpAGfe5jdek5P"}
+2026-03-03 11:08:22.0484 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkDR7oxnsuAV86aeb"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkDR7oxnsuAV86aeb"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkDR7oxnsuAV86aeb"}
+2026-03-03 11:08:22.0492 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkGe2puYqs8FGEKtK"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkGe2puYqs8FGEKtK"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkGe2puYqs8FGEKtK"}
+2026-03-03 11:08:22.0499 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkGtYSp7SBhg1zAQo"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkGtYSp7SBhg1zAQo"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkGtYSp7SBhg1zAQo"}
+2026-03-03 11:08:22.0507 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkSZ5CEQLHSgrU1LF"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkSZ5CEQLHSgrU1LF"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkSZ5CEQLHSgrU1LF"}
+2026-03-03 11:08:22.0514 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkFecR2kNtaLwzEPC"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkFecR2kNtaLwzEPC"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkFecR2kNtaLwzEPC"}
+2026-03-03 11:08:22.0521 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkDfUKTcA7s5mKqXA"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkDfUKTcA7s5mKqXA"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfxnkDfUKTcA7s5mKqXA"}
+2026-03-03 11:08:22.0530 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for anthropic/claude-sonnet-4-20250514: {
+  "attempted_request_count": 8,
+  "successful_response_count": 0,
+  "failed_response_count": 8,
+  "failure_rate": 1.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_per_response_seconds": 0.0,
+  "cache_hit_rate": 0.0,
+  "tokens_per_response": 0.0,
+  "cost_per_response": 0.0
+}
+2026-03-03 11:11:55.0625 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfy4TjR6vASaejnv4MCS"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfy4TjR6vASaejnv4MCS"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfy4TjR6vASaejnv4MCS"}
+2026-03-03 11:11:55.0635 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfy4ToPP6bVbd3FUKXyQ"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfy4ToPP6bVbd3FUKXyQ"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfy4ToPP6bVbd3FUKXyQ"}
+2026-03-03 11:11:55.0648 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for anthropic/claude-sonnet-4-20250514: {
+  "attempted_request_count": 2,
+  "successful_response_count": 0,
+  "failed_response_count": 2,
+  "failure_rate": 1.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_per_response_seconds": 0.0,
+  "cache_hit_rate": 0.0,
+  "tokens_per_response": 0.0,
+  "cost_per_response": 0.0
+}
+2026-03-03 11:14:36.0586 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKqzRRu4xKcSnXKcH"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKqzRRu4xKcSnXKcH"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKqzRRu4xKcSnXKcH"}
+2026-03-03 11:14:36.0595 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsyCUWYi5Cp5ueUx"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsyCUWYi5Cp5ueUx"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsyCUWYi5Cp5ueUx"}
+2026-03-03 11:14:36.0604 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsEB7cJt4eLZKMry"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsEB7cJt4eLZKMry"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsEB7cJt4eLZKMry"}
+2026-03-03 11:14:36.0612 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsiygUGUrPS9jNsE"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsiygUGUrPS9jNsE"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsiygUGUrPS9jNsE"}
+2026-03-03 11:14:36.0620 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsUPNcaWEzwZSMg4"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsUPNcaWEzwZSMg4"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsUPNcaWEzwZSMg4"}
+2026-03-03 11:14:36.0627 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsy6x6HDhnzyZDzU"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsy6x6HDhnzyZDzU"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsy6x6HDhnzyZDzU"}
+2026-03-03 11:14:36.0634 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsyLqPxr2yNgGHeC"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsyLqPxr2yNgGHeC"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKsyLqPxr2yNgGHeC"}
+2026-03-03 11:14:36.0641 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKuhmY52cBB2cqxXd"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKuhmY52cBB2cqxXd"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKuhmY52cBB2cqxXd"}
+2026-03-03 11:14:36.0647 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKqEzwjpY6cwXATkF"}
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 261, in acompletion_function
+    response = await async_handler.post(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 280, in acompletion_function
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKqEzwjpY6cwXATkF"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyGKqEzwjpY6cwXATkF"}
+2026-03-03 11:14:36.0655 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for anthropic/claude-sonnet-4-20250514: {
+  "attempted_request_count": 9,
+  "successful_response_count": 0,
+  "failed_response_count": 9,
+  "failure_rate": 1.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_per_response_seconds": 0.0,
+  "cache_hit_rate": 0.0,
+  "tokens_per_response": 0.0,
+  "cost_per_response": 0.0
+}
+2026-03-03 11:15:00.0046 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - b'{"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyJ3bjto3rkyNQeqY13"}'
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 87, in make_call
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 212, in acompletion_stream_function
+    completion_stream, headers = await make_call(
+                                 ^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 95, in make_call
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: b'{"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyJ3bjto3rkyNQeqY13"}'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - b'{"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfyJ3bjto3rkyNQeqY13"}'
+2026-03-03 11:15:00.0053 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for openai/text-embedding-3-small: {
+  "attempted_request_count": 1,
+  "successful_response_count": 1,
+  "failed_response_count": 0,
+  "failure_rate": 0.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_seconds": 2.764866828918457,
+  "compute_duration_per_response_seconds": 2.764866828918457,
+  "cache_hit_rate": 0.0,
+  "streaming_responses": 0,
+  "responses_with_tokens": 1,
+  "prompt_tokens": 5,
+  "total_tokens": 5,
+  "tokens_per_response": 5.0,
+  "cost_per_response": 0.0
+}
+2026-03-03 11:15:00.0053 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for anthropic/claude-sonnet-4-20250514: {
+  "attempted_request_count": 1,
+  "successful_response_count": 0,
+  "failed_response_count": 1,
+  "failure_rate": 1.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_per_response_seconds": 0.0,
+  "cache_hit_rate": 0.0,
+  "tokens_per_response": 0.0,
+  "cost_per_response": 0.0
+}
+2026-03-03 11:19:31.0654 - ERROR - graphrag_llm.middleware.with_logging - Async request failed with exception=litellm.BadRequestError: AnthropicException - b'{"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfye5GFgcy41BXn3Q5oZ"}'
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 87, in make_call
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/logging_utils.py", line 297, in async_wrapper
+    result = await func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 511, in post
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/custom_httpx/http_handler.py", line 467, in post
+    response.raise_for_status()
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://api.anthropic.com/v1/messages'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 613, in acompletion
+    response = await init_response
+               ^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 212, in acompletion_stream_function
+    completion_stream, headers = await make_call(
+                                 ^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/llms/anthropic/chat/handler.py", line 95, in make_call
+    raise AnthropicError(
+litellm.llms.anthropic.common_utils.AnthropicError: b'{"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfye5GFgcy41BXn3Q5oZ"}'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_logging.py", line 64, in _request_count_middleware_async
+    return await async_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_request_count.py", line 72, in _request_count_middleware_async
+    result = await async_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_retries.py", line 55, in _retry_middleware_async
+    return await retrier.retry_async(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/retry/exponential_retry.py", line 102, in retry_async
+    return await func(**input_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/middleware/with_metrics.py", line 80, in _metrics_middleware_async
+    response = await async_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/graphrag_llm/completion/lite_llm_completion.py", line 290, in _base_completion_async
+    response = await litellm.acompletion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 2041, in wrapper_async
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/utils.py", line 1862, in wrapper_async
+    result = await original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/main.py", line 632, in acompletion
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2398, in exception_type
+    raise e
+  File "/Users/henrikbolarsen/projects/GraphRAG-mvp/.venv/lib/python3.12/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 672, in exception_type
+    raise BadRequestError(
+litellm.exceptions.BadRequestError: litellm.BadRequestError: AnthropicException - b'{"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CYfye5GFgcy41BXn3Q5oZ"}'
+2026-03-03 11:19:31.0664 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for openai/text-embedding-3-small: {
+  "attempted_request_count": 1,
+  "successful_response_count": 1,
+  "failed_response_count": 0,
+  "failure_rate": 0.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_seconds": 0.5925099849700928,
+  "compute_duration_per_response_seconds": 0.5925099849700928,
+  "cache_hit_rate": 0.0,
+  "streaming_responses": 0,
+  "responses_with_tokens": 1,
+  "prompt_tokens": 5,
+  "total_tokens": 5,
+  "tokens_per_response": 5.0,
+  "cost_per_response": 0.0
+}
+2026-03-03 11:19:31.0664 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for anthropic/claude-sonnet-4-20250514: {
+  "attempted_request_count": 1,
+  "successful_response_count": 0,
+  "failed_response_count": 1,
+  "failure_rate": 1.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_per_response_seconds": 0.0,
+  "cache_hit_rate": 0.0,
+  "tokens_per_response": 0.0,
+  "cost_per_response": 0.0
+}
+2026-03-03 11:24:58.0981 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for openai/text-embedding-3-small: {
+  "attempted_request_count": 1,
+  "successful_response_count": 1,
+  "failed_response_count": 0,
+  "failure_rate": 0.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_seconds": 2.712941884994507,
+  "compute_duration_per_response_seconds": 2.712941884994507,
+  "cache_hit_rate": 0.0,
+  "streaming_responses": 0,
+  "responses_with_tokens": 1,
+  "prompt_tokens": 5,
+  "total_tokens": 5,
+  "tokens_per_response": 5.0,
+  "cost_per_response": 0.0
+}
+2026-03-03 11:24:58.0982 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for anthropic/claude-sonnet-4-20250514: {
+  "attempted_request_count": 1,
+  "successful_response_count": 1,
+  "failed_response_count": 0,
+  "failure_rate": 0.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_seconds": 0,
+  "compute_duration_per_response_seconds": 0.0,
+  "cache_hit_rate": 0.0,
+  "streaming_responses": 1,
+  "tokens_per_response": 0.0,
+  "cost_per_response": 0.0
+}
+2026-03-03 11:26:05.0645 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for anthropic/claude-sonnet-4-20250514: {
+  "attempted_request_count": 14,
+  "successful_response_count": 14,
+  "failed_response_count": 0,
+  "failure_rate": 0.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_seconds": 57.636921882629395,
+  "compute_duration_per_response_seconds": 4.433609375586877,
+  "cache_hit_rate": 0.0,
+  "streaming_responses": 1,
+  "responses_with_tokens": 13,
+  "prompt_tokens": 20672,
+  "completion_tokens": 2070,
+  "total_tokens": 22742,
+  "tokens_per_response": 1749.3846153846155,
+  "cost_per_response": 0.0
+}
+2026-03-04 09:17:00.0993 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for anthropic/claude-sonnet-4-20250514: {
+  "attempted_request_count": 16,
+  "successful_response_count": 16,
+  "failed_response_count": 0,
+  "failure_rate": 0.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_seconds": 67.27985382080078,
+  "compute_duration_per_response_seconds": 4.485323588053386,
+  "cache_hit_rate": 0.0,
+  "streaming_responses": 1,
+  "responses_with_tokens": 15,
+  "prompt_tokens": 25533,
+  "completion_tokens": 2566,
+  "total_tokens": 28099,
+  "tokens_per_response": 1873.2666666666667,
+  "cost_per_response": 0.0
+}

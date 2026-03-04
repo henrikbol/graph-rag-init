@@ -1,0 +1,11 @@
+The technological achievements of the Apollo program were extraordinary and required innovation across multiple engineering disciplines. The Saturn V rocket stood 363 feet tall and generated 7.5 million pounds of thrust at liftoff. It was developed at the Marshall Space Flight Center under the leadership of Wernher von Braun, a German-born rocket engineer who had previously developed the V-2 rocket during World War II.
+
+The Command Module, built by North American Aviation in Downey, California, served as the crew quarters and flight control section for the entire mission. It was the only part of the spacecraft that returned to Earth. The Service Module, also built by North American Aviation, contained the propulsion system and most of the consumables such as oxygen, water, and electrical power.
+
+The Lunar Module, manufactured by Grumman in Bethpage, New York, was a two-stage spacecraft designed exclusively for operations in the vacuum of space. Its descent stage included the engine for landing on the Moon and served as a launch platform for the ascent stage, which carried the crew back to lunar orbit to rendezvous with the Command Module.
+
+Mission Control Center at the Manned Spacecraft Center in Houston, Texas, served as the nerve center for all Apollo missions. Flight Directors such as Gene Kranz, Chris Kraft, and Glynn Lunney coordinated thousands of engineers and controllers who monitored every aspect of the missions in real time.
+
+The Apollo Guidance Computer, developed at the MIT Instrumentation Laboratory under the direction of Charles Stark Draper, was a pioneering digital computer that used integrated circuits. Margaret Hamilton, who led the software engineering team at MIT, developed the onboard flight software that proved critical during the Apollo 11 landing when the computer successfully managed multiple program alarms.
+
+The program also drove advances in materials science, telecommunications, life support systems, and project management. Many technologies developed for Apollo found applications in everyday life, from water purification systems to fireproof materials. The total cost of the Apollo program was approximately 25.4 billion dollars, equivalent to over 150 billion dollars in modern currency.
