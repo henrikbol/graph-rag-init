@@ -16,3 +16,5 @@ wheels/
 
 /cache
 /output
+/logs
+.DS_Store
